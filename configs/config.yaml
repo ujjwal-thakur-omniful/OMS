@@ -1,0 +1,26 @@
+server:
+  port: ":8081"
+worker:
+  bulk_order:
+    name: "bulk_order"
+    workerCount: 1
+    region: "eu-north-1"
+    endpoint: "https://sqs.eu-north-1.amazonaws.com/972120215480/bulk_order"
+    account: "972120215480"
+
+
+env: "staging"
+mongo:
+  uri: "mongodb://localhost:27017"
+  database: "order"
+  collection: "OMS"
+
+     
+migration:
+  flag: true
+log:
+  level: "debug"
+  format: "json"
+  request: true
+  response: true
+  request_debug: true
