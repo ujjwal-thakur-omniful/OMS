@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 
 	parse_csv "example.com/m/internal/CSV"
 	"example.com/m/internal/domain"
@@ -32,17 +33,19 @@ func (s *Service) CreateOrder(ctx context.Context, order models.Order) (models.O
 
 	return createdOrder, error2.CustomError{}
 }
-func CreateBulkOrder(filePath string) error2.CustomError {
+func CreateBulkOrder(ctx context.Context, filePath string) error2.CustomError {
 	// Logic to process the bulk order from the provided file path
 	orders, err := parse_csv.ParseCSV(filePath)
 	if err != nil {
 		return error2.CustomError{}
 	}
 
-	repository.InsertOrders(orders, DB)
+
+	repository.InsertOrders(ctx, orders, DB)
 	if err != nil {
 		return error2.CustomError{}
 	}
+	fmt.Println("orders inserted successfully")
 
 	return error2.CustomError{}
 }

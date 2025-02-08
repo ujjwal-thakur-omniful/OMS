@@ -12,8 +12,7 @@ import (
 	"github.com/omniful/go_commons/http"
 	"github.com/omniful/go_commons/log"
 	"github.com/omniful/go_commons/shutdown"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	
 )
 
 const (
@@ -69,15 +68,15 @@ func runHttpServer(ctx context.Context) {
 
 	<-shutdown.GetWaitChannel()
 }
-func ConnectMongoDB() (*mongo.Client, error) {
-    clientOptions := options.Client().ApplyURI("mongodb://localhost:27017") // Change to your MongoDB URI
-    client, err := mongo.Connect(context.TODO(), clientOptions)
-    if err != nil {
-        return nil, err
-    }
-    err = client.Ping(context.TODO(), nil)
-    if err != nil {
-        return nil, err
-    }
-    return client, nil
-}
+// func ConnectMongoDB() (*mongo.Client, error) {
+//     clientOptions := options.Client().ApplyURI("mongodb://localhost:27017") // Change to your MongoDB URI
+//     client, err := mongo.Connect(context.TODO(), clientOptions)
+//     if err != nil {
+//         return nil, err
+//     }
+//     err = client.Ping(context.TODO(), nil)
+//     if err != nil {
+//         return nil, err
+//     }
+//     return client, nil
+// }
